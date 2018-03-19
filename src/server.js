@@ -58,8 +58,8 @@ server.get('/accepted-answer/:soID', findPost, (req, res) => {
   });
 });
 
-server.get('/top-answer/:soID', (req, res) => {
-  queryAndThen(Post.findOne({ soID: req.params.soID }), res, (post) => {
+server.get('/top-answer/:soID', findPost, (req, res) => {
+  queryAndThen(req.post, res, (post) => {
     if (!post) {
       sendUserError("Couldn't find post with given ID", res);
       return;
